@@ -8,6 +8,7 @@ crate-type = ["staticlib"]
 
 
 [dependencies]
+anyhow = "1.0.86"
 cxx = { version = "1.0.126", features = ["c++17"] }
 
 [build-dependencies]

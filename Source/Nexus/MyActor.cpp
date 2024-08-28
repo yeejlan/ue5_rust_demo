@@ -5,6 +5,7 @@
 #include "Components/SceneComponent.h"
 #include "Components/BillboardComponent.h"
 #include "Log.h"
+#include "rust/cxx.h"
 #include "rust_plugin/src/lib.rs.h"
 
 // Sets default values
@@ -25,12 +26,23 @@ void AMyActor::BeginPlay()
 	Super::BeginPlay();
     int num = rust_plugin::translate::add5(3);
     FString msg = FString::FromInt(num);
-    auto msg2 = rust_plugin::translate::_t("this is the message");
+    rust::String msg2 = rust_plugin::translate::_t("this is the message");
     FString msg3 = FString(msg2.c_str());
     GEngine->AddOnScreenDebugMessage(-1, 15.0f, FColor::Yellow, *msg);
     GEngine->AddOnScreenDebugMessage(-1, 15.0f, FColor::Green, *msg3);
 	UE_LOG(LogNexus, Log, TEXT("%s: on play, num is %d, value is %d"), *GetName(), num, Value);
     UE_LOG(LogNexus, Log, TEXT("%s"), *msg3);
+    bool isTrue = rust_plugin::feelout::return_bool(true);
+    UE_LOG(LogNexus, Log, TEXT("bool result: %d"), isTrue);
+    try{
+        rust::String ok_result = rust_plugin::feelout::return_result_ok();
+        UE_LOG(LogNexus, Log, TEXT("Got ok result: %s"), *FString(ok_result.c_str()));
+        rust::String err_result = rust_plugin::feelout::return_result_error();
+        UE_LOG(LogNexus, Log, TEXT("Got ok result: %s"), *FString(err_result.c_str()));
+    }catch (rust::Error e) {
+        UE_LOG(LogNexus, Log, TEXT("Got error result: %s"), *FString(e.what()));
+    }
+    //auto this_never_work = rust_plugin::feelout::a_panicked_function();
 }
 
 // Called every frame
