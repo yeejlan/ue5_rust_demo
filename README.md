@@ -13,7 +13,7 @@ UE5 with Rust via Cxx(https://github.com/dtolnay/cxx)
 9. run cargoBuild.bat to compile rust soure, also run build.bat to compile UE5 project
 10. run editor.bat, open UE5 Editor, drag "MyActor" to scene and run
 11. you may check the message on screen and in console output
-12. ny prefer work flow: coding, run cargoBuild.bat to compile rust soure, then in UE5 Editor, use tool|debug|module, search "Nexus" to compile UE5 source code
+12. my prefer work flow: coding, run cargoBuild.bat to compile rust soure, then in UE5 Editor, use tool|debug|module, search "Nexus" to compile UE5 source code
 
 PS. If you got strange link error, please make sure "cargo" and "Unreal build tool" use the same msvc toolchain which is very importment! 
 
