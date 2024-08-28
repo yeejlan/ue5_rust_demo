@@ -1,7 +1,10 @@
+/.git
 /.vscode
 /Content
 /DerivedDataCache
 /Intermediate
 /Saved
-/Plugins/Rust/Content
-/Plugins/Rust/Intermediate
+/Temp
+/Plugins/RustPlugin/Content
+/Plugins/RustPlugin/src
+/Plugins/RustPlugin/target
