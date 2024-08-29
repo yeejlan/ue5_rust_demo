@@ -27,7 +27,7 @@ void AMyActor::BeginPlay()
     int num = rust_plugin::translate::add5(3);
     FString msg = FString::FromInt(num);
     rust::String msg2 = rust_plugin::translate::_t("假装这是翻译后的message");
-    FString msg3 = FString(UTF8_TO_TCHAR(msg2.c_str()));
+    FString msg3(UTF8_TO_TCHAR(msg2.c_str()));
     GEngine->AddOnScreenDebugMessage(-1, 15.0f, FColor::Yellow, *msg);
     GEngine->AddOnScreenDebugMessage(-1, 15.0f, FColor::Green, *msg3);
 	UE_LOG(LogNexus, Log, TEXT("%s: 正在运行, num is %d, value is %d"), *GetName(), num, Value);
@@ -36,11 +36,11 @@ void AMyActor::BeginPlay()
     UE_LOG(LogNexus, Log, TEXT("bool result: %d"), isTrue);
     try{
         rust::String ok_result = rust_plugin::feelout::return_result_ok();
-        UE_LOG(LogNexus, Log, TEXT("Got ok result: %s"), *FString(ok_result.c_str()));
+        UE_LOG(LogNexus, Log, TEXT("Got ok result: %s"), UTF8_TO_TCHAR(ok_result.c_str()));
         rust::String err_result = rust_plugin::feelout::return_result_error();
-        UE_LOG(LogNexus, Log, TEXT("Got ok result: %s"), *FString(err_result.c_str()));
+        UE_LOG(LogNexus, Log, TEXT("Got ok result: %s"), UTF8_TO_TCHAR(err_result.c_str()));
     }catch (rust::Error e) {
-        UE_LOG(LogNexus, Log, TEXT("Got error result: %s"), *FString(e.what()));
+        UE_LOG(LogNexus, Log, TEXT("Got error result: %s"), UTF8_TO_TCHAR(e.what()));
     }
     //auto this_never_work = rust_plugin::feelout::a_panicked_function();
 }
