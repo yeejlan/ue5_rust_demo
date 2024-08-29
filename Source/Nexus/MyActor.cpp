@@ -26,11 +26,11 @@ void AMyActor::BeginPlay()
 	Super::BeginPlay();
     int num = rust_plugin::translate::add5(3);
     FString msg = FString::FromInt(num);
-    rust::String msg2 = rust_plugin::translate::_t("this is the message");
-    FString msg3 = FString(msg2.c_str());
+    rust::String msg2 = rust_plugin::translate::_t("假装这是翻译后的message");
+    FString msg3 = FString(UTF8_TO_TCHAR(msg2.c_str()));
     GEngine->AddOnScreenDebugMessage(-1, 15.0f, FColor::Yellow, *msg);
     GEngine->AddOnScreenDebugMessage(-1, 15.0f, FColor::Green, *msg3);
-	UE_LOG(LogNexus, Log, TEXT("%s: on play, num is %d, value is %d"), *GetName(), num, Value);
+	UE_LOG(LogNexus, Log, TEXT("%s: 正在运行, num is %d, value is %d"), *GetName(), num, Value);
     UE_LOG(LogNexus, Log, TEXT("%s"), *msg3);
     bool isTrue = rust_plugin::feelout::return_bool(true);
     UE_LOG(LogNexus, Log, TEXT("bool result: %d"), isTrue);
