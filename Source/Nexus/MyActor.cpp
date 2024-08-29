@@ -27,7 +27,7 @@ void AMyActor::BeginPlay()
     int num = rust_plugin::translate::add5(3);
     FString msg = FString::FromInt(num);
     rust::String msg2 = rust_plugin::translate::_t("假装这是翻译后的message");
-    FString msg3(UTF8_TO_TCHAR(msg2.c_str()));
+    FString msg3 {UTF8_TO_TCHAR(msg2.c_str())};
     GEngine->AddOnScreenDebugMessage(-1, 15.0f, FColor::Yellow, *msg);
     GEngine->AddOnScreenDebugMessage(-1, 15.0f, FColor::Green, *msg3);
 	UE_LOG(LogNexus, Log, TEXT("%s: 正在运行, num is %d, value is %d"), *GetName(), num, Value);
